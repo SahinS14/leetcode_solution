@@ -1,31 +1,32 @@
+
 class Solution {
     public void setZeroes(int[][] matrix) {
-        int m=matrix.length;
-        int n=matrix[0].length;
-        boolean row[]=new boolean[m];
-        boolean col[]=new boolean[n];
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(matrix[i][j]==0){
-                    row[i]=true;
-                    col[j]=true;
+
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int[] row = new int[m];
+        int[] col = new int[n];
+
+        // Step 1: Find original zeros
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+
+                if (matrix[i][j] == 0) {
+                    row[i] = 1;
+                    col[j] = 1;
                 }
             }
         }
-        for(int i=0;i<m;i++){
-            if(row[i]==true){
-                for(int j=0;j<n;j++){
-                    matrix[i][j]=0;
-                }
-            }
-        }
-        for(int i=0;i<n;i++){
-            if(col[i]==true){
-                for(int j=0;j<m;j++){
-                    matrix[j][i]=0;
+
+        // Step 2: Set corresponding rows and columns to zero
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+
+                if (row[i] == 1 || col[j] == 1) {
+                    matrix[i][j] = 0;
                 }
             }
         }
     }
-
 }
